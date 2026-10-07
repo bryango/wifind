@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<!--
+	  Wi-Fi information capability. macOS 10.15 and later gate unredacted
+	  SSID/BSSID behind this entitlement; whether it also needs a provisioning
+	  profile depends on the certificate, which is why make-app.sh applies this
+	  file only when signing with a real identity and lets it be disabled with
+	  ENTITLEMENTS=.
+
+	  com.apple.security.personal-information.location is deliberately absent:
+	  it is a sandbox entitlement and this app is not sandboxed.
+	-->
+	<key>com.apple.developer.networking.wifi-info</key>
+	<true/>
+</dict>
+</plist>

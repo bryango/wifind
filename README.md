@@ -180,7 +180,26 @@ Tests/               unit tests for the logic above
 DESIGN.md            design notes, reference implementations, measured limits
 ```
 
+## Prior art
+
+wifind was written after studying three existing macOS Wi-Fi scanners. Each is
+worth a look if you are doing something similar:
+
+- [braineo/airport-bssid](https://github.com/braineo/airport-bssid) - Swift and
+  CoreWLAN. Shows the scan-then-associate shape, records that
+  `airport -A=ssid -BSSID=...` no longer exists, and settles on SSID + channel
+  as the fallback for connecting.
+- [jaisonerick/macwifi](https://github.com/jaisonerick/macwifi) - a Go library
+  with a signed Swift helper, and the source of most of the constraints above:
+  the retired `airport` path, redacted BSSIDs, the CoreLocation gate, the
+  keychain item, and the `open -W` launch.
+- [jaisonerick/macwifi-cli](https://github.com/jaisonerick/macwifi-cli) - the
+  command line front end for that library; its table layout and `C`/`S` flags
+  informed wifind's columns.
+
+`DESIGN.md` section 2 records what was taken from each, and what was left out.
+(`airport-bssid` is GPL-3.0; both `macwifi` projects are MIT.)
+
 ## License
 
-GNU General Public License v3.0 - see [LICENSE](LICENSE). The reference
-implementations studied while writing it are listed in `DESIGN.md`.
+GNU General Public License v3.0 - see [LICENSE](LICENSE).
